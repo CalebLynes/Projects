@@ -4,8 +4,16 @@
 
 using namespace std;
 
+/*
+This program takes in a cstring, removes all punctuation and spaces,
+and returns whether the word is a palindrome (same forwards as backwards)
+Author: Caleb Lynes (477934)
+Date: 9/25/19
+ */
+
 int main() {
-  
+
+  //read in a cstring
   char str[80];
   cin.get(str, 80);
   cin.get();
@@ -29,6 +37,7 @@ int main() {
   str[count] = '\0';
   //cout << "Removed punct: " << str << endl;
 
+  //create backwards string
   len = strlen(str) - 1;
   int count2 = len;
   char str2[len];
@@ -38,14 +47,15 @@ int main() {
     //cout << str2 << endl;
   }
   str2[len+1] = '\0';
-  cout << "str: " << str << endl;
-  cout << "str2: " << str2 << endl;
+  cout << "Forwards: " << str << endl;
+  cout << "Backwards: " << str2 << endl;
 
+  //check and report whether string is a palindrome
   if (strcmp(str,str2) == 0) {
-    cout << "This is a Palindrome!!" << endl;
+    cout << "Palindrome!! :D" << endl;
   }
   else {
-    cout << "This is not a Palindrome :(" << endl;
+    cout << "Not a Palindrome :(" << endl;
   }
   
   return 0;
