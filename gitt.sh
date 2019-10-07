@@ -1,3 +1,3 @@
 git add .
-git commit -m "yeet"
-git push -u origin master
+git commit -m "*project*"
+git push --force origin master
