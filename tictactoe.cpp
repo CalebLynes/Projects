@@ -13,7 +13,7 @@ using namespace std;
 void printBoard(int board[][3], int BLANK, int X_MOVE, int O_MOVE);
 void resetBoard(int board[][3]);
 bool checkWin(int player, int board[][3]);
-bool checkTie(int board[][3], int BLANK);
+bool checkTie(int board[][3]);
 
 int main() {
   //variables
@@ -30,6 +30,7 @@ int main() {
   int ties = 0;
   int turn = X_TURN;
 
+  
   bool stillPlaying = true;
 
   /* //check values on the board for testing
@@ -39,13 +40,15 @@ int main() {
     }
   }
   */
+
   while (stillPlaying == true) {
-    resetBoard(board);
+    resetBoard(board);  
+    turn = X_TURN;
     cout << "X's turn: " << endl;
     //while the game is ongoing
     while (checkWin(X_MOVE, board) == false &&
 	   checkWin(O_MOVE, board) == false &&
-	   checkTie(board, BLANK) == false) {
+	   checkTie(board) == false) {
       //print the board and take user input
       printBoard(board, BLANK, X_MOVE, O_MOVE);
       char input[50];
@@ -100,7 +103,7 @@ int main() {
       cout << "O wins!";
       o_wins++;
     }
-    else if (checkTie(board, BLANK) == true) {
+    else if (checkTie(board) == true) {
       printBoard(board, BLANK, X_MOVE, O_MOVE);
       cout << "You tied!" << endl;
       ties++;
@@ -110,14 +113,19 @@ int main() {
 
     //ask if still playing
     cout << "Keep playing? y or n" << endl;
-    char input;
-    cin >> input;
-    if (input = 'y') {
+
+    char inp[10];
+    cin.get(inp,10);
+    cin.get();
+    if (inp[0] == 'y') {
       stillPlaying = true;
     }
     else {
       stillPlaying = false;
     }
+
+    //stillPlaying = false;
+    
   }
   
   return 0;
@@ -197,15 +205,15 @@ bool checkWin(int player, int board[][3]) {
 }
 
 //check if there is a tie (if there are no blanks left)
-bool checkTie(int board[][3], int BLANK) {
+bool checkTie(int board[][3]) {
   //check if there is any blanks on the board. If so return false. otherwise return true.
   for (int row = 0; row < 3; row++) {
     for (int column = 0; column < 3; column++) {
-      if (board[row][column] == BLANK) {
+      if (board[row][column] == 0) {
 	return false;
       }
     }
   }
-  
-  return false;
+ 
+  return true;
 }
