@@ -75,7 +75,9 @@ int main() {
 }
 
 void newStudent(vector<Student> students) {
-  students.push_back(new Student());
+  new Student {
+    
+  }
 }
 
 void printStudents(vector<Student> students) {
