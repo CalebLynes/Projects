@@ -6,50 +6,44 @@ using namespace std;
 
 //Student structure
 struct Student {
-  char name[50];
+  char first_name[50];
+  char last_name[50];
   int id;
   float gpa;
 };
 
 
 //declare functions
-void newStudent(vector<Student> students);
+void newStudent(vector<Student> &students);
 void printStudents(vector<Student> students);
-void deleteStudent(vector<Student> students);
+void deleteStudent(vector<Student> &students, int id);
 
 //main
 int main() {
   vector<Student> students;
   bool stillGoing = true;
-
-  Student caleb;
-  caleb.name[0] = 'C';
-  caleb.name[1] = 'a';
-  caleb.name[2] = 'l';
-  caleb.name[3] = 'e';
-  caleb.name[4] = 'b';
-  caleb.id = 555555;
-  caleb.gpa = 5.0;
   
-  students.push_back(caleb);
   cout << "students size: " << students.size() << endl;
 
+  
   while (stillGoing == true) {
     cout << "Commands: NEW, PRINT, DELETE, QUIT" << endl;
     char input[10];
+    cout << input << endl;
     cin.get(input,10);
     cin.get();
 
     if (input[0] == 'N' &&
 	input[1] == 'E' &&
 	input[2] == 'W') {
-      cout << "read NEW." << endl;
+      //cout << "read NEW." << endl;
+      newStudent(students);
     }
     else if (input[0] == 'Q' &&
 	     input[1] == 'U' &&
 	     input[2] == 'I' &&
 	     input[3] == 'T'){
-      cout << "read QUIT." << endl;
+      //cout << "read QUIT." << endl;
       stillGoing = false;
     }
     else if (input[0] == 'P' &&
@@ -57,7 +51,7 @@ int main() {
 	     input[2] == 'I' &&
 	     input[3] == 'N' &&
 	     input[4] == 'T'){
-      cout << "read PRINT." << endl;
+      //cout << "read PRINT." << endl;
       printStudents(students);
     }
     else if (input[0] == 'D' &&
@@ -66,24 +60,50 @@ int main() {
 	     input[3] == 'E' &&
 	     input[4] == 'T' &&
 	     input[5] == 'E'){
-      cout << "read DELETE." << endl;
+      //cout << "read DELETE." << endl;
+      int id;
+      cout << "Enter the id of the student you want to delete: ";
+      cin >> id;
+      deleteStudent(students, id);
+    }
+    else {
+      cout << "Error reading input" << endl;
+      stillGoing = false;
     }
     
+    //printStudents(students);
     //stillGoing = false;
   }
   return 0;
 }
 
-void newStudent(vector<Student> students) {
-  students.push_back(new Student());
+void newStudent(vector<Student> &students) {
+  Student s;
+  cout << "Enter a first name: ";
+  cin.get(s.first_name,50);
+  cin.get();
+
+  cout << "Enter a last name: ";
+  cin.get(s.last_name,50);
+  cin.get();
+
+  cout << "Enter an id: ";
+  cin >> s.id;
+
+  cout << "Enter a gpa: ";
+  cin >> s.gpa;
+  
+  students.push_back(s);
+  cout << "Student added!" << endl;
 }
 
 void printStudents(vector<Student> students) {
+  cout << "Students: " << students.size() << endl;
   for (int i = 0; i < students.size(); i++) {
-    cout << students.at(i).name <<  ", " << students.at(i).id << endl;
+    cout << students.at(i).first_name <<  ", " << students.at(i).id << ", " << students.at(i).gpa << endl;
   }
 }
 
-void deleteStudent(vector<Student> students) {
-
+void deleteStudent(vector<Student> &students, int id) {
+  cout << id << endl;
 }
