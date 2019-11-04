@@ -1,3 +1,3 @@
 git add .
-git commit -m "*project*"
+git commit -m "Classes"
 git push --force origin master
