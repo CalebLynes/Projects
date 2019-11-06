@@ -1,9 +1,9 @@
-//Parent.h
+//Media.h
 #include <iostream>
 
 using namespace std;
 
-class Parent {
+class Media {
  public:
   void hello();
 };
