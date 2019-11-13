@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+
+using namespace std;
+
+int main() {
+
+  char input;
+  int guess, num, count;
+  bool win;
+  bool keepGoing = true;
+  while (keepGoing == true) {
+    win = false;
+    count = 0;
+    srand(time(NULL));
+    num = rand() % 100 + 1;
+  
+    cout << "Guess a number between 1 and 100:" << endl;
+    cin >> guess;
+    
+    while (win == false) {
+      if (guess != num) {
+	count++;
+	if (guess < num) {
+	  cout << "Too low" << endl;
+	}
+	else if (guess > num) {
+	  cout << "Too high" << endl;
+	}
+      }
+      else {
+	win = true;
+	cout << "You Win!" << " Attempts: " << count << endl;
+      }
+    }
+    cout << "Do you want to keep playing? y or n." << endl;
+    cin >> input;
+    if (input == 'n') {
+      keepGoing = false;
+    }
+  }
+
+  return 0;
+}
