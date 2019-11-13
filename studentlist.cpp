@@ -13,6 +13,7 @@ using namespace std;
   as quit the program.
  */
 
+
 //Student structure
 struct Student {
   char first_name[50];
