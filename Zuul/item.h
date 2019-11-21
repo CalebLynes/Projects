@@ -8,9 +8,8 @@ using namespace std;
 
 class Item {
  public:
-  Item(char newdescription[50]);
-  void getDescription(char temp[50]);
-  char description[50];
+  Item(char newname[50]);
+  char name[50];
 };
 
 #endif

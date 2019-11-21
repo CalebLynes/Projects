@@ -3,10 +3,6 @@
 
 using namespace std;
 
-Item::Item(char newdescription[50]) {
-  strcpy(description, newdescription);
-}
-
-void Item::getDescription(char temp[50]) {
-  temp = description;
+Item::Item(char newname[50]) {
+  strcpy(name, newname);
 }

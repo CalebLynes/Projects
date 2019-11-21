@@ -1,11 +1,11 @@
 //main.cpp
 #include <iostream>
-#include <cstring>
 #include "room.h"
 #include "item.h"
 
 using namespace std;
 
+void printWelcome();
 void printHelp();
 void printCommands(char validCommands[][10]);
 
@@ -24,36 +24,39 @@ int main() {
   cin.get(input,100);
   cin.get();
   
-  try {
-    char* a = strtok(input, " ");
-    strcpy(word1, a);
-    a = strtok(NULL, " ");
-    
-      strcpy(word2, a);
-  } catch (const exception& e) {
-    strcpy(word1, input);
-  }
+  
+  char* a = strtok(input, " ");
+  strcpy(word1, a);
+  a = strtok(NULL, " ");
+  strcpy(word2, a);
   //word 1 and 2 separated
-  if (strcmp(word1,"go")==0) {
-    //go
-    cout << word2 << endl;
+  if (word2 != NULL) {
+    if (strcmp(word1,"go")==0) {
+      //go
+      cout << word2 << endl;
+    }
+    if (strcmp(word1,"get")==0) {
+      //get
+    }
+    if (strcmp(word1,"drop")==0) {
+      //drop
+    }
+  
   }
-  if (strcmp(word1,"quit")==0) {
-    //quit
-  }
-  if (strcmp(word1,"help")==0) {
-    //help
-    printHelp();
-    printCommands(validCommands);
-  }
-  if (strcmp(word1,"inventory")==0) {
-    //inventory
-  }
-  if (strcmp(word1,"get")==0) {
-    //get
-  }
-  if (strcmp(word1,"drop")==0) {
-    //drop
+  else {
+    if (strcmp(word1,"quit")==0) {
+      //quit
+      
+    }
+    if (strcmp(word1,"help")==0) {
+      //help
+      printHelp();
+      printCommands(validCommands);
+    }
+    if (strcmp(word1,"inventory")==0) {
+      //inventory
+      
+    }
   }
   
   return 0;
@@ -71,3 +74,8 @@ void printCommands(char validCommands[][10]) {
   }
 }
 
+void printWelcome() {
+  cout << "Welcome to Zuul!" << endl;
+  cout << "Enjoy the scenery." << endl;
+  cout << "Type 'help' to show commands." << endl << endl;
+}
