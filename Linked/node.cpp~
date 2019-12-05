@@ -1,0 +1,25 @@
+//node.cpp
+#include <iostream>
+
+using namespace std;
+
+Node::Node(Student* newstudent) {
+  student = newstudent;
+}
+
+Node::~Node() {
+  delete student;
+  next = NULL;
+}
+
+Node* Node::getNext() {
+  return next;
+}
+
+void Node::setNext(Node* newnext) {
+  next = newnext;
+}
+
+Student* Node::getStudent() {
+  return student;
+}
