@@ -1,8 +1,13 @@
+//room.cpp
 #include <iostream>
 #include "room.h"
 #include "item.h"
 
 using namespace std;
+
+/*
+    This class is to hold all of the room functions
+*/
 
 //constructor
 Room::Room(char newdescription[50]) {
@@ -11,77 +16,60 @@ Room::Room(char newdescription[50]) {
   items = new vector<Item*>;
 }
 
-//make an exit from this room
+//---setExit:   make an exit from this room
 void Room::setExit(char direction[10], Room* neighbor) {
   exits->insert(pair<char*, Room*>(direction, neighbor));
 }
 
-//print short description of room
+//---printShortDescription:   print short description of room
 void Room::printShortDescription() {
   cout << "You are in " << description << endl;
 }
 
-//prints long description of the room (description, exits, items)
+//---printLongDescription:   prints long description of the room (description, exits, items)
 void Room::printLongDescription() {
   printShortDescription();
   printExits();
   printItems();
 }
 
-//print exits for a room
+//---printExits:   print exits for a room
 void Room::printExits() {
   cout << "Exits: " << endl;
-  cout << "\tDIRECTION\tROOM" << endl;
+  cout << "\tDIRECTION:\tROOM:" << endl;
   map<char*, Room*>::iterator it;
   for (it = exits->begin(); it != exits->end(); it++) {
-    cout << "\t" << it->first << "\t"
-	 << "\t" << it->second->description << endl;
+    cout << "\t  " << it->first << "\t"
+	 << "\t  " << it->second->description << endl;
   }
   cout << endl;
 }
 
-//print all items in current room
+//---printItems:   print all items in current room
 void Room::printItems() {
-  cout << "Items in room: " << endl;
-  for (int i = 0; i < items->size(); i++) {
-    cout << " - " << (*items)[i]->name << endl;
-  }
-  cout << endl;
+    cout << "Items in room: " << endl;
+    int size = items->size();
+    if (size == 0) {
+        cout << "No items to see here." << endl << endl;
+    }
+    else {
+        for (int i = 0; i < size; i++) {
+            cout << " - " << (*items)[i]->name << endl;
+        }
+        cout << endl;
+    }
 }
 
-//get exit at specified direction
-Room Room::getExit(char direction[10]) {
+//---getExit:   get exit at specified direction
+Room* Room::getExit(char direction[10]) {
   map<char*, Room*>::iterator it = exits->find(direction);
   if (it != exits->end()) {
-    return (*it->second);
-  }
-}
-
-//Get item at specified index or name
-Item Room::getItem(int i) {
-  return *(*items)[i];
-}
-Item Room::getItem(char itemName[50]) {
-  for (int i = 0; i < items->size(); i++) {
-    if (strcmp((*items)[i]->name, itemName)==0) {
-      return *(*items)[i];
-    }
+    return it->second;
   }
   return NULL;
 }
 
-//Remove item from room
-void Room::removeItem(char itemName[50]) {
-  for (int i = 0; i < items->size(); i++) {
-    if (strcmp((*items)[i]->name, itemName)==0) {
-      //call destructor and delete item
-      delete (*items)[i];
-      items->erase(items->begin()+i);
-    }
-  }
-}
-
-//Set an item in the room
+//---setItem:   set an item in the room
 void Room::setItem(Item* newitem) {
   items->push_back(newitem);
 }

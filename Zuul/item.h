@@ -1,3 +1,4 @@
+//item.h
 #ifndef ITEM_H
 #define ITEM_H
 
@@ -5,6 +6,10 @@
 #include <cstring>
 
 using namespace std;
+
+/*
+    This class is the header for item.cpp
+*/
 
 class Item {
  public:

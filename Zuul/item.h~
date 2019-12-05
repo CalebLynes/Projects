@@ -1,8 +1,0 @@
-#include <iostream>
-
-class Item {
- public:
-  Item(char newdescription[50]);
-  char description[50];
-  void getDescription(char temp[50]);
-}

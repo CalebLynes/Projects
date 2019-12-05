@@ -1,3 +1,4 @@
+//room.h
 #include <iostream>
 #include <vector>
 #include <map>
@@ -5,6 +6,10 @@
 #include "item.h"
 
 using namespace std;
+
+/*
+    This class is the header to room.cpp
+*/
 
 class Room {
  public:
@@ -18,9 +23,7 @@ class Room {
   void printLongDescription();
   void printExits();
   void printItems();
-  Room getExit(char direction[10]);
-  Item getItem(int i);
-  Item getItem(char itemName[50]);
+  Room* getExit(char direction[10]);
   void removeItem(char itemName[50]);
   void setItem(Item* newitem);
 };
