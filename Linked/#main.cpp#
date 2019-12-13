@@ -5,24 +5,12 @@
 
 using namespace std;
 
-void add(Student* student, Node* &head);
-void print(Node* node, Node* &head);
-void del(int id, Node* node);
-
 int main() {
   Node* head = NULL;
   Student* student1 = new Student(1);
   Student* student2 = new Student(2);
   Student* student3 = new Student(3);
-
-  add(student1, head);
-  print(head, head);
-  add(student2, head);
-  print(head, head);
-  add(student3, head);
-  print(head, head);
-  del(3, head);
-  print(head, head);
+  
   
   return 0;
 }
