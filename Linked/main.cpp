@@ -2,70 +2,36 @@
 #include <iostream>
 #include "student.h"
 #include "node.h"
+#include <cstring>
 
 using namespace std;
 
-void add(Student* student, Node* &head);
-void print(Node* node, Node* &head);
-void del(int id, Node* node);
-
 int main() {
-  Node* head = NULL;
+  //make students (shows student constructor)
   Student* student1 = new Student(1);
   Student* student2 = new Student(2);
   Student* student3 = new Student(3);
 
-  add(student1, head);
-  print(head, head);
-  add(student2, head);
-  print(head, head);
-  add(student3, head);
-  print(head, head);
-  del(3, head);
-  print(head, head);
+  //make list (shows node constructor and setNext)
+  Node* node1 = new Node(student1);
+  Node* node2 = new Node(student2);
+  Node* node3 = new Node(student3);
+  node1->setNext(node2);
+  node2->setNext(node3);
+
+  //print the next students' id
+  //(shows use of getNext and getStudent)
+  cout << "Student1's next: "
+       << node1->getNext()->getStudent()->getId() << endl;
+  cout << "Student2's next: "
+       << node2->getNext()->getStudent()->getId() << endl;
+  
+  //delete student2 and update list
+  //(shows deconstructor of both student and node)
+  delete node2;
+  node1->setNext(node3);
+  cout << "Student1 next after list update: "
+       << node1->getNext()->getStudent()->getId() << endl;
   
   return 0;
-}
-
-//---add student
-void add(Student* student, Node* &head) {
-  Node* current = head;
-  //if the list is empty
-  if (current == NULL) {
-    head = new Node(student);
-  }
-  //list is not empty!
-  else {
-    //make our way to the end of the list
-    while (current->getNext() != NULL) {
-      current = current->getNext();
-    }
-    current->setNext(new Node(student));
-  }
-}
-
-//---print list
-void print(Node* node, Node* &head) {
-  //if current node = the start of list
-  if (node == head) {
-    cout << endl;
-    cout << "list:";
-  }
-  //if current node != the end of list
-  if (node != NULL) {
-    cout << node->getStudent()->getId() << " ";
-    print(node->getNext(), head);
-  }
-}
-
-//---delete student
-void del(int id, Node* node) {
-  if (node->getStudent()->getId() == id) {
-    node->~Node();
-  }
-  else {
-    if (node != NULL) {
-      del(id, node->getNext());
-    }
-  }
 }
