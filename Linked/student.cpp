@@ -18,8 +18,8 @@ int Student::getId() {
   return id;
 }
 
-char Student::getName() {
-  return *name;
+char* Student::getName() {
+  return name;
 }
 
 float Student::getGpa() {
